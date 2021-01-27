@@ -112,15 +112,6 @@ router.get("/", function(req, res, next) {
 			res.locals.chainTxStatsLabels = [ "24 hours", "1 week", "1 month", "1 year" ]
 				.slice(0, chainTxStatsIntervals.length)
 				.concat("All time");
-
-			// promiseResults[8-X] (if not regtest)
-			for (var i = 0; i < chainTxStatsIntervals.length; i++) {
-				promises.push(coreApi.getChainTxStats(chainTxStatsIntervals[i]));
-			}
-		}
-
-		if (getblockchaininfo.chain !== 'regtest') {
-			promises.push(coreApi.getChainTxStats(getblockchaininfo.blocks - 1));
 		}
 
 		coreApi.getBlocksByHeight(blockHeights).then(function(latestBlocks) {

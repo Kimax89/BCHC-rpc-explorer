@@ -117,10 +117,6 @@ function getRawMempoolEntry(txid) {
 	});
 }
 
-function getChainTxStats(blockCount) {
-	return getRpcDataWithParams({method:"getchaintxstats", parameters:[blockCount]});
-}
-
 function getBlockByHeight(blockHeight) {
 	return new Promise(function(resolve, reject) {
 		getRpcDataWithParams({method:"getblockhash", parameters:[blockHeight]}).then(function(blockhash) {
@@ -460,7 +456,6 @@ module.exports = {
 	getRpcMethodHelp: getRpcMethodHelp,
 	getAddress: getAddress,
 	getPeerInfo: getPeerInfo,
-	getChainTxStats: getChainTxStats,
 	getSmartFeeEstimate: getSmartFeeEstimate,
 	getUtxoSetSummary: getUtxoSetSummary,
 	getNetworkHashrate: getNetworkHashrate,

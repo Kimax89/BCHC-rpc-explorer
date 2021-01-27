@@ -241,12 +241,6 @@ function getUptimeSeconds() {
 	return tryCacheThenRpcApi(miscCache, "getUptimeSeconds", ONE_SEC, rpcApi.getUptimeSeconds);
 }
 
-function getChainTxStats(blockCount) {
-	return tryCacheThenRpcApi(miscCache, "getChainTxStats-" + blockCount, 20 * ONE_MIN, function() {
-		return rpcApi.getChainTxStats(blockCount);
-	});
-}
-
 function getNetworkHashrate(blockCount) {
 	return tryCacheThenRpcApi(miscCache, "getNetworkHashrate-" + blockCount, 20 * ONE_MIN, function() {
 		return rpcApi.getNetworkHashrate(blockCount);
@@ -291,11 +285,6 @@ function getTxCountStats(dataPtCount, blockStart, blockEnd) {
 			var chainTxStatsIntervals = [];
 			for (var i = 0; i < dataPoints; i++) {
 				chainTxStatsIntervals.push(parseInt(Math.max(10, getblockchaininfo.blocks - blockStart - i * (blockEnd - blockStart) / (dataPoints - 1) - 1)));
-			}
-
-			var promises = [];
-			for (var i = 0; i < chainTxStatsIntervals.length; i++) {
-				promises.push(getChainTxStats(chainTxStatsIntervals[i]));
 			}
 
 			Promise.all(promises).then(function(results) {
@@ -1044,7 +1033,6 @@ module.exports = {
 	getAddress: getAddress,
 	logCacheSizes: logCacheSizes,
 	getPeerSummary: getPeerSummary,
-	getChainTxStats: getChainTxStats,
 	getMempoolDetails: getMempoolDetails,
 	getTxCountStats: getTxCountStats,
 	getSmartFeeEstimates: getSmartFeeEstimates,
