@@ -186,19 +186,6 @@ module.exports = {
 		valueDisplayMaxLargeDigits: 4,
 		header:{
 			showToolsSubheader:(process.env.BTCEXP_UI_SHOW_TOOLS_SUBHEADER == "true"),
-			dropdowns:[
-				{
-					title:"Related Sites",
-					links:[
-						{name: "Bitcoin Explorer", url:"https://explorer.btc21.org", imgUrl:"./img/logo/btc.svg"},
-						{name: "Testnet Explorer", url:"https://testnet.btc21.org", imgUrl:"./img/logo/tbtc.svg"},
-						{name: "Signet Explorer", url:"https://signet.btc21.org", imgUrl:"./img/logo/signet.svg"},
-						{name: "LND Admin", url:"https://lnd-admin.btc21.org", imgUrl:"./img/logo/lnd-admin.png"},
-						{name: "Litecoin Explorer", url:"https://ltc.chaintools.io", imgUrl:"/img/logo/ltc.svg"},
-						{name: "Lightning Explorer", url:"https://lightning.chaintools.io", imgUrl:"/img/logo/lightning.svg"},
-					]
-				}
-			]
 		},
 		subHeaderToolsList:[0, 10, 9, 4, 11, 6, 7], // indexes in "siteTools" below that are shown in the site "sub menu" (visible on all pages except homepage)
 		prioritizedToolIdsList: [0, 10, 11, 9, 3, 4, 12, 2, 5, 1, 6, 7, 13, 8],
