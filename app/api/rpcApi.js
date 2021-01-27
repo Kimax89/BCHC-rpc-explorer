@@ -452,7 +452,6 @@ module.exports = {
 	getRpcMethodHelp: getRpcMethodHelp,
 	getAddress: getAddress,
 	getPeerInfo: getPeerInfo,
-	getSmartFeeEstimate: getSmartFeeEstimate,
 	getUtxoSetSummary: getUtxoSetSummary,
 	getNetworkHashrate: getNetworkHashrate,
 	getBlockHeaderByHash: getBlockHeaderByHash,

@@ -69,9 +69,6 @@ router.get("/", function(req, res, next) {
 	promises.push(coreApi.getMiningInfo());
 
 	// promiseResults[2]
-	promises.push(coreApi.getSmartFeeEstimates("CONSERVATIVE", feeConfTargets));
-
-	// promiseResults[3] and [4]
 	promises.push(coreApi.getNetworkHashrate(144));
 	promises.push(coreApi.getNetworkHashrate(1008));
 
