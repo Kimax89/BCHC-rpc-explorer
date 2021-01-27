@@ -36,10 +36,6 @@ block content
 
 						div.clearfix
 							div.row
-								div.summary-table-label Host : Port
-								div.summary-table-content.text-monospace #{global.rpcClient.host + " : " + global.rpcClient.port}
-
-							div.row
 								div.summary-table-label Chain
 								div.summary-table-content.text-monospace #{getblockchaininfo.chain}
 
@@ -51,15 +47,6 @@ block content
 								div.summary-table-label Protocol Version
 								div.summary-table-content.text-monospace #{getnetworkinfo.protocolversion}
 
-							if (getblockchaininfo.size_on_disk)
-								- var sizeData = utils.formatLargeNumber(getblockchaininfo.size_on_disk, 2);
-
-								div.row
-									div.summary-table-label Blockchain Size
-									div.summary-table-content.text-monospace #{sizeData[0]} #{sizeData[1].abbreviation}B
-										br
-										span.text-muted  (pruned: #{getblockchaininfo.pruned})
-
 							if (getblockchaininfo.softforks)
 								div.row
 									div.summary-table-label Soft Forks
@@ -70,7 +57,7 @@ block content
 													div.d-inline-block.text-right(style="width: 75px;")
 														span.font-weight-bold #{itemName}:
 													
-													span.mr-2.ml-2 type=#{item.type},
+													span.mr-2.ml-2 type=#{item.id},
 
 													if (item.active)
 														span.mr-2
