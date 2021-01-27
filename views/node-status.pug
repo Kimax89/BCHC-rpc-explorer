@@ -88,15 +88,9 @@ block content
 										span.text-success Synchronized with network
 
 							div.row
-								div.summary-table-label Uptime
-								div.summary-table-content.text-monospace
-									- var startTimeAgo = moment.duration(uptimeSeconds * 1000);
-									span #{startTimeAgo.format()}
-
-							div.row
 								div.summary-table-label Warnings
 								div.summary-table-content.text-monospace
-									if (getblockchaininfo.warnings && getblockchaininfo.warnings.trim().length > 0)
+									if (getnetworkinfo.warnings && getnetworkinfo.warnings.trim().length > 0)
 										span.text-danger #{getblockchaininfo.warnings}
 									else
 										span None
