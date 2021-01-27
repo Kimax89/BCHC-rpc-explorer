@@ -140,15 +140,6 @@ block content
 												if (item.proxy)
 													span.text-muted.ml-3 (proxy: #{item.proxy})
 
-							if (getnetworkinfo.localaddresses)
-								div.row
-									div.summary-table-label Local Addresses
-									div.summary-table-content.text-monospace
-										each item, index in getnetworkinfo.localaddresses
-											div #{item.address}:#{item.port}
-												span.text-muted.ml-3 (score: #{item.score.toLocaleString()})
-							
-
 			div.tab-pane(id="tab-json", role="tabpanel")
 
 				ul.nav.nav-pills.mb-3
