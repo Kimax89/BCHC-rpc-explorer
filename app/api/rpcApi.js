@@ -24,8 +24,6 @@ var rpcQueue = async.queue(function(task, callback) {
 
 }, config.rpcConcurrency);
 
-var minRpcVersions = {getblockstats:"0.19.0"};
-
 global.rpcStats = {};
 
 
@@ -68,38 +66,6 @@ function getSmartFeeEstimate(mode="CONSERVATIVE", confTargetBlockCount) {
 
 function getNetworkHashrate(blockCount=144) {
 	return getRpcDataWithParams({method:"getnetworkhashps", parameters:[blockCount]});
-}
-
-function getBlockStats(hash) {
-	if (semver.gte(global.btcNodeSemver, minRpcVersions.getblockstats)) {
-		if (hash == coinConfig.genesisBlockHashesByNetwork[global.activeBlockchain] && coinConfig.genesisBlockStatsByNetwork[global.activeBlockchain]) {
-			return new Promise(function(resolve, reject) {
-				resolve(coinConfig.genesisBlockStatsByNetwork[global.activeBlockchain]);
-			});
-
-		} else {
-			return getRpcDataWithParams({method:"getblockstats", parameters:[hash]});
-		}
-	} else {
-		// unsupported
-		return unsupportedPromise(minRpcVersions.getblockstats);
-	}
-}
-
-function getBlockStatsByHeight(height) {
-	if (semver.gte(global.btcNodeSemver, minRpcVersions.getblockstats)) {
-		if (height == 0 && coinConfig.genesisBlockStatsByNetwork[global.activeBlockchain]) {
-			return new Promise(function(resolve, reject) {
-				resolve(coinConfig.genesisBlockStatsByNetwork[global.activeBlockchain]);
-			});
-			
-		} else {
-			return getRpcDataWithParams({method:"getblockstats", parameters:[height]});
-		}
-	} else {
-		// unsupported
-		return unsupportedPromise(minRpcVersions.getblockstats);
-	}
 }
 
 function getUtxoSetSummary() {

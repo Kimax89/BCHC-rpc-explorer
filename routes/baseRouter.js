@@ -489,27 +489,6 @@ router.get("/mining-summary", function(req, res, next) {
 	});
 });
 
-router.get("/block-stats", function(req, res, next) {
-	if (semver.lt(global.btcNodeSemver, rpcApi.minRpcVersions.getblockstats)) {
-		res.locals.rpcApiUnsupportedError = {rpc:"getblockstats", version:rpcApi.minRpcVersions.getblockstats};
-	}
-
-	coreApi.getBlockchainInfo().then(function(getblockchaininfo) {
-		res.locals.currentBlockHeight = getblockchaininfo.blocks;
-
-		res.render("block-stats");
-
-		next();
-
-	}).catch(function(err) {
-		res.locals.userMessage = "Error: " + err;
-
-		res.render("block-stats");
-
-		next();
-	});
-});
-
 router.get("/search", function(req, res, next) {
 	res.render("search");
 
