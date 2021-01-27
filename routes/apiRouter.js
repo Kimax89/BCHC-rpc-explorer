@@ -55,21 +55,6 @@ router.get("/block-headers-by-height/:blockHeights", function(req, res, next) {
 	});
 });
 
-router.get("/block-stats-by-height/:blockHeights", function(req, res, next) {
-	var blockHeightStrs = req.params.blockHeights.split(",");
-	
-	var blockHeights = [];
-	for (var i = 0; i < blockHeightStrs.length; i++) {
-		blockHeights.push(parseInt(blockHeightStrs[i]));
-	}
-
-	coreApi.getBlocksStatsByHeight(blockHeights).then(function(result) {
-		res.json(result);
-
-		next();
-	});
-});
-
 router.get("/mempool-txs/:txids", function(req, res, next) {
 	var txids = req.params.txids.split(",").map(utils.asHash);
 

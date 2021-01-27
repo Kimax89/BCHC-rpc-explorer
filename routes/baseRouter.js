@@ -94,10 +94,6 @@ router.get("/", function(req, res, next) {
 			blockHeights.push(0);
 		}
 
-		// promiseResults[5]
-		promises.push(coreApi.getBlocksStatsByHeight(blockHeights));
-
-		// promiseResults[6]
 		promises.push(new Promise(function(resolve, reject) {
 			coreApi.getBlockHeaderByHeight(coinConfig.difficultyAdjustmentBlockCount * res.locals.difficultyPeriod).then(function(difficultyPeriodFirstBlockHeader) {
 				resolve(difficultyPeriodFirstBlockHeader);
@@ -434,8 +430,6 @@ router.get("/blocks", function(req, res, next) {
 		var promises = [];
 
 		promises.push(coreApi.getBlocksByHeight(blockHeights));
-
-		promises.push(coreApi.getBlocksStatsByHeight(blockHeights));
 
 		Promise.all(promises).then(function(promiseResults) {
 			res.locals.blocks = promiseResults[0];
