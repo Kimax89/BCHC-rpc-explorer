@@ -59,11 +59,10 @@ block content
 													
 													span.mr-2.ml-2 type=#{item.id},
 
-													if (item.active)
+													if (item.reject.active)
 														span.mr-2
 															span status=
 															span.text-success active
-															small.text-muted.ml-2 (height: #{item.height.toLocaleString()})
 
 							div.row
 								div.summary-table-label Block Count
