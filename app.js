@@ -271,11 +271,6 @@ function onRpcConnectionVerified(getnetworkinfo, getblockchaininfo) {
 	// UTXO pull
 	refreshUtxoSetSummary();
 	setInterval(refreshUtxoSetSummary, 30 * 60 * 1000);
-
-
-	// 1d / 7d volume
-	refreshNetworkVolumes();
-	setInterval(refreshNetworkVolumes, 30 * 60 * 1000);
 }
 
 function refreshUtxoSetSummary() {
@@ -299,74 +294,6 @@ function refreshUtxoSetSummary() {
 		debugLog("Refreshed utxo summary: " + JSON.stringify(result));
 	});
 }
-
-function refreshNetworkVolumes() {
-	if (config.slowDeviceMode) {
-		debugLog("Skipping performance-intensive task: fetch last 24 hrs of blockstats to calculate transaction volume. This is skipped due to the flag 'slowDeviceMode' which defaults to 'true' to protect slow nodes. Set this flag to 'false' to enjoy UTXO set summary details.");
-
-		return;
-	}
-
-	var cutoff1d = new Date().getTime() - (60 * 60 * 24 * 1000);
-	var cutoff7d = new Date().getTime() - (60 * 60 * 24 * 7 * 1000);
-
-	coreApi.getBlockchainInfo().then(function(result) {
-		var promises = [];
-
-		var blocksPerDay = 144 + 20; // 20 block padding
-
-		var startBlock = result.blocks;
-
-		var endBlock1d = result.blocks;
-		var endBlock7d = result.blocks;
-
-		var endBlockTime1d = 0;
-		var endBlockTime7d = 0;
-
-		Promise.all(promises).then(function(results) {
-			var volume1d = new Decimal(0);
-			var volume7d = new Decimal(0);
-
-			var blocks1d = 0;
-			var blocks7d = 0;
-
-			if (results && results.length > 0 && results[0] != null) {
-				for (var i = 0; i < results.length; i++) {
-					if (results[i].time * 1000 > cutoff1d) {
-						volume1d = volume1d.plus(new Decimal(results[i].total_out));
-						volume1d = volume1d.plus(new Decimal(results[i].subsidy));
-						volume1d = volume1d.plus(new Decimal(results[i].totalfee));
-						blocks1d++;
-
-						endBlock1d = results[i].height;
-						endBlockTime1d = results[i].time;
-					}
-
-					if (results[i].time * 1000 > cutoff7d) {
-						volume7d = volume7d.plus(new Decimal(results[i].total_out));
-						volume7d = volume7d.plus(new Decimal(results[i].subsidy));
-						volume7d = volume7d.plus(new Decimal(results[i].totalfee));
-						blocks7d++;
-
-						endBlock7d = results[i].height;
-						endBlockTime7d = results[i].time;
-					}
-				}
-
-				volume1d = volume1d.dividedBy(coinConfig.baseCurrencyUnit.multiplier);
-				volume7d = volume7d.dividedBy(coinConfig.baseCurrencyUnit.multiplier);
-
-				global.networkVolume = {d1:{amt:volume1d, blocks:blocks1d, startBlock:startBlock, endBlock:endBlock1d, startTime:results[0].time, endTime:endBlockTime1d}};
-
-				debugLog(`Network volume: ${JSON.stringify(global.networkVolume)}`);
-
-			} else {
-				debugLog("Unable to load network volume, likely due to bitcoind version older than 0.17.0 (the first version to support getblockstats).");
-			}
-		});
-	});
-}
-
 
 app.onStartup = function() {
 	global.appStartTime = new Date().getTime();
