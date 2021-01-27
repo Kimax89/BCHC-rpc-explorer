@@ -60,10 +60,6 @@ function getMempoolTxids() {
 	return getRpcDataWithParams({method:"getrawmempool", parameters:[false]});
 }
 
-function getSmartFeeEstimate(mode="CONSERVATIVE", confTargetBlockCount) {
-	return getRpcDataWithParams({method:"estimatesmartfee", parameters:[confTargetBlockCount, mode]});
-}
-
 function getNetworkHashrate(blockCount=144) {
 	return getRpcDataWithParams({method:"getnetworkhashps", parameters:[blockCount]});
 }
