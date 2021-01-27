@@ -467,5 +467,4 @@ module.exports = {
 	getBlockHeaderByHash: getBlockHeaderByHash,
 	getBlockHeaderByHeight: getBlockHeaderByHeight,
 
-	minRpcVersions: minRpcVersions
 };
