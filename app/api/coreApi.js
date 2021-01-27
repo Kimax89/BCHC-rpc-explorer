@@ -237,10 +237,6 @@ function getMiningInfo() {
 	return tryCacheThenRpcApi(miscCache, "getMiningInfo", 30 * ONE_SEC, rpcApi.getMiningInfo);
 }
 
-function getUptimeSeconds() {
-	return tryCacheThenRpcApi(miscCache, "getUptimeSeconds", ONE_SEC, rpcApi.getUptimeSeconds);
-}
-
 function getNetworkHashrate(blockCount) {
 	return tryCacheThenRpcApi(miscCache, "getNetworkHashrate-" + blockCount, 20 * ONE_MIN, function() {
 		return rpcApi.getNetworkHashrate(blockCount);
@@ -977,7 +973,6 @@ module.exports = {
 	getRawTransactionsWithInputs: getRawTransactionsWithInputs,
 	getTxUtxos: getTxUtxos,
 	getMempoolTxDetails: getMempoolTxDetails,
-	getUptimeSeconds: getUptimeSeconds,
 	getHelp: getHelp,
 	getRpcMethodHelp: getRpcMethodHelp,
 	getAddress: getAddress,

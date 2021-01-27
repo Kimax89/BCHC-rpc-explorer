@@ -48,10 +48,6 @@ function getMiningInfo() {
 	return getRpcData("getmininginfo");
 }
 
-function getUptimeSeconds() {
-	return getRpcData("uptime");
-}
-
 function getPeerInfo() {
 	return getRpcData("getpeerinfo");
 }
@@ -447,7 +443,6 @@ module.exports = {
 	getUtxo: getUtxo,
 	getMempoolTxDetails: getMempoolTxDetails,
 	getRawMempool: getRawMempool,
-	getUptimeSeconds: getUptimeSeconds,
 	getHelp: getHelp,
 	getRpcMethodHelp: getRpcMethodHelp,
 	getAddress: getAddress,

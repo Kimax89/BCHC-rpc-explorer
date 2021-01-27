@@ -196,25 +196,15 @@ router.get("/node-status", function(req, res, next) {
 		coreApi.getNetworkInfo().then(function(getnetworkinfo) {
 			res.locals.getnetworkinfo = getnetworkinfo;
 
-			coreApi.getUptimeSeconds().then(function(uptimeSeconds) {
-				res.locals.uptimeSeconds = uptimeSeconds;
+			coreApi.getNetTotals().then(function(getnettotals) {
+				res.locals.getnettotals = getnettotals;
 
-				coreApi.getNetTotals().then(function(getnettotals) {
-					res.locals.getnettotals = getnettotals;
+				res.render("node-status");
 
-					res.render("node-status");
+				next();
 
-					next();
-
-				}).catch(function(err) {
-					res.locals.userMessage = "Error getting node status: (id=0), err=" + err;
-
-					res.render("node-status");
-
-					next();
-				});
 			}).catch(function(err) {
-				res.locals.userMessage = "Error getting node status: (id=1), err=" + err;
+				res.locals.userMessage = "Error getting node status: (id=0), err=" + err;
 
 				res.render("node-status");
 
