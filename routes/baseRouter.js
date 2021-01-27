@@ -637,19 +637,6 @@ router.get("/block-height/:blockHeight", function(req, res, next) {
 			});
 		}));
 
-		promises.push(new Promise(function(resolve, reject) {
-			coreApi.getBlockStats(result.hash).then(function(result) {
-				res.locals.result.blockstats = result;
-
-				resolve();
-
-			}).catch(function(err) {
-				res.locals.pageErrors.push(utils.logError("983yr435r76d", err));
-
-				reject(err);
-			});
-		}));
-
 		Promise.all(promises).then(function() {
 			res.render("block");
 
@@ -714,19 +701,6 @@ router.get("/block/:blockHash", function(req, res, next) {
 
 		}).catch(function(err) {
 			res.locals.pageErrors.push(utils.logError("238h38sse", err));
-			
-			reject(err);
-		});
-	}));
-
-	promises.push(new Promise(function(resolve, reject) {
-		coreApi.getBlockStats(blockHash).then(function(result) {
-			res.locals.result.blockstats = result;
-
-			resolve();
-
-		}).catch(function(err) {
-			res.locals.pageErrors.push(utils.logError("21983ue8hye", err));
 			
 			reject(err);
 		});

@@ -253,18 +253,6 @@ function getNetworkHashrate(blockCount) {
 	});
 }
 
-function getBlockStats(hash) {
-	return tryCacheThenRpcApi(miscCache, "getBlockStats-" + hash, ONE_YR, function() {
-		return rpcApi.getBlockStats(hash);
-	});
-}
-
-function getBlockStatsByHeight(height) {
-	return tryCacheThenRpcApi(miscCache, "getBlockStatsByHeight-" + height, ONE_YR, function() {
-		return rpcApi.getBlockStatsByHeight(height);
-	});
-}
-
 function getUtxoSetSummary() {
 	return tryCacheThenRpcApi(miscCache, "getUtxoSetSummary", 15 * ONE_MIN, rpcApi.getUtxoSetSummary);
 }
@@ -571,22 +559,6 @@ function getBlockHeadersByHeight(blockHeights) {
 		var promises = [];
 		for (var i = 0; i < blockHeights.length; i++) {
 			promises.push(getBlockHeaderByHeight(blockHeights[i]));
-		}
-
-		Promise.all(promises).then(function(results) {
-			resolve(results);
-
-		}).catch(function(err) {
-			reject(err);
-		});
-	});
-}
-
-function getBlocksStatsByHeight(blockHeights) {
-	return new Promise(function(resolve, reject) {
-		var promises = [];
-		for (var i = 0; i < blockHeights.length; i++) {
-			promises.push(getBlockStatsByHeight(blockHeights[i]));
 		}
 
 		Promise.all(promises).then(function(results) {
@@ -1079,9 +1051,6 @@ module.exports = {
 	getSmartFeeEstimate: getSmartFeeEstimate,
 	getUtxoSetSummary: getUtxoSetSummary,
 	getNetworkHashrate: getNetworkHashrate,
-	getBlockStats: getBlockStats,
-	getBlockStatsByHeight: getBlockStatsByHeight,
-	getBlocksStatsByHeight: getBlocksStatsByHeight,
 	buildBlockAnalysisData: buildBlockAnalysisData,
 	getBlockHeaderByHeight: getBlockHeaderByHeight,
 	getBlockHeadersByHeight: getBlockHeadersByHeight
