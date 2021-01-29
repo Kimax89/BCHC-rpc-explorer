@@ -116,7 +116,7 @@ router.get("/", function(req, res, next) {
 				//res.locals.mempoolInfo = promiseResults[0];
 				//res.locals.miningInfo = promiseResults[1];
 
-				//var rawSmartFeeEstimates = promiseResults[2];
+				var rawSmartFeeEstimates = promiseResults[2];
 
 				var smartFeeEstimates = {};
 
@@ -138,16 +138,16 @@ router.get("/", function(req, res, next) {
 				res.locals.hashrate7d = promiseResults[4];
 
 				
-				var rawblockstats = promiseResults[5];
-				if (rawblockstats && rawblockstats.length > 0 && rawblockstats[0] != null) {
-					res.locals.blockstatsByHeight = {};
+//				var rawblockstats = promiseResults[5];
+//				if (rawblockstats && rawblockstats.length > 0 && rawblockstats[0] != null) {
+//					res.locals.blockstatsByHeight = {};
 
-					for (var i = 0; i < rawblockstats.length; i++) {
-						var blockstats = rawblockstats[i];
+//					for (var i = 0; i < rawblockstats.length; i++) {
+//						var blockstats = rawblockstats[i];
 
-						res.locals.blockstatsByHeight[blockstats.height] = blockstats;
-					}
-				}
+//						res.locals.blockstatsByHeight[blockstats.height] = blockstats;
+//					}
+//				}
 
 				res.locals.difficultyPeriodFirstBlockHeader = promiseResults[6];
 				
