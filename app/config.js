@@ -49,7 +49,8 @@ for (var i = 0; i < electrumXServerUriStrings.length; i++) {
 	"BTCEXP_DEMO",
 	"BTCEXP_PRIVACY_MODE",
 	"BTCEXP_NO_INMEMORY_RPC_CACHE",
-	"BTCEXP_RPC_ALLOWALL"
+	"BTCEXP_RPC_ALLOWALL",
+	"BTCEXP_UI_SHOW_ADMIN"
 
 ].forEach(function(item) {
 	if (process.env[item] === undefined) {
