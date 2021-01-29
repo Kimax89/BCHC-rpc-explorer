@@ -93,11 +93,12 @@ html(lang="en")
 										i.fas.fa-search
 
 						ul.navbar-nav
-							li.nav-item.dropdown
-								a.nav-link.dropdown-toggle(href="javascript:void(0)", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") 
-									span  Admin Tools
-								div.dropdown-menu.dropdown-menu-right.shadow(aria-label="Admin Tools Items")
-									a.dropdown-item(href="./admin") Admin Dashboard
+							if (process.env.BTCEXP_UI_SHOW_ADMIN == "true")
+								li.nav-item.dropdown
+									a.nav-link.dropdown-toggle(href="javascript:void(0)", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") 
+										span  Admin Tools
+									div.dropdown-menu.dropdown-menu-right.shadow(aria-label="Admin Tools Items")
+										a.dropdown-item(href="./admin") Admin Dashboard
 
 							li.nav-item.dropdown
 								a.nav-link.dropdown-toggle(href="javascript:void(0)", id="navbarDropdown", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") 
