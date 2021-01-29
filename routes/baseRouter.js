@@ -113,7 +113,7 @@ router.get("/", function(req, res, next) {
 			res.locals.blocksUntilDifficultyAdjustment = ((res.locals.difficultyPeriod + 1) * coinConfig.difficultyAdjustmentBlockCount) - latestBlocks[0].height;
 
 			Promise.all(promises).then(function(promiseResults) {
-				res.locals.mempoolInfo = promiseResults[0];
+				//res.locals.mempoolInfo = promiseResults[0];
 				res.locals.miningInfo = promiseResults[1];
 
 				var rawSmartFeeEstimates = promiseResults[2];
