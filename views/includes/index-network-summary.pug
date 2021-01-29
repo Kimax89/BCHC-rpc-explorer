@@ -23,8 +23,6 @@ div.row.index-summary
 							span.d-xxl-none #{hashrate1dayData0[0]}
 							span.d-none.d-xxl-inline #{hashrate1dayData1[0]}
 							small.text-muted  / 
-							span.d-xxl-none #{hashrate7dayData0[0]} 
-							span.d-none.d-xxl-inline #{hashrate7dayData1[0]} 
 							small.border-dotted(title=`${hashrate1dayData0[1].abbreviation}H = ${hashrate1dayData0[1].name}-hash (x10^${hashrate1dayData0[1].exponent})`, data-toggle="tooltip") #{hashrate1dayData0[1].abbreviation}H/s
 
 				if (!["regtest", "signet"].includes(global.activeBlockchain))
