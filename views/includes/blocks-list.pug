@@ -123,15 +123,6 @@ div.table-responsive
 									span 0
 
 						td.data-cell.text-monospace.text-right
-							- var currencyValue = new Decimal(block.totalFees).dividedBy(block.strippedsize).times(coinConfig.baseCurrencyUnit.multiplier).toDecimalPlaces(1);
-							span #{currencyValue}
-							
-							// idea: show typical tx fee, maybe also optimized fee if not segwit
-							if (false)
-								- var feeEstimateVal = currencyValue.times(166).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
-								span.border-dotted(title=`Value: ${feeEstimateVal}`, data-toggle="tooltip") #{currencyValue}
-
-						td.data-cell.text-monospace.text-right
 							- var currencyValue = new Decimal(block.totalFees);
 							- var currencyValueDecimals = 3;
 							include ./value-display.pug
