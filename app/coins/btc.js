@@ -64,8 +64,8 @@ module.exports = {
 		"regtest":"Regtest Explorer",
 		"signet":"Signet Explorer",
 	},
-	siteDescriptionHtml:"<b>BTC Explorer</b> is <a href='https://github.com/janoside/btc-rpc-explorer). If you run your own [Bitcoin Full Node](https://bitcoin.org/en/full-node), **BTC Explorer** can easily run alongside it, communicating via RPC calls. See the project [ReadMe](https://github.com/janoside/btc-rpc-explorer) for a list of features and instructions for running.",
-	nodeTitle:"Bitcoin Full Node",
+	siteDescriptionHtml:"<b>BCHC Explorer</b> is <a href='https://github.com/Kimax89/bchc-rpc-explorer). If you run your own [Bitcoin Full Node](https://bitcoin.org/en/full-node), **BTC Explorer** can easily run alongside it, communicating via RPC calls. See the project [ReadMe](https://github.com/Kimax89/bchc-rpc-explorer) for a list of features and instructions for running.",
+	nodeTitle:"Bitcoin Clashic Full Node",
 	nodeUrl:"https://bitcoin.org/en/full-node",
 	demoSiteUrl: "https://explorer.btc21.org",
 	miningPoolsConfigUrls:[

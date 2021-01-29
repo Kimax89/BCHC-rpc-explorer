@@ -1,6 +1,6 @@
 # BTC RPC Explorer
 
-![homepage](https://github.com/janoside/btc-rpc-explorer/blob/master/public/img/screenshots/homepage.png?raw=true)
+![homepage](https://github.com/Kimax89/bchc-rpc-explorer/blob/master/public/img/screenshots/homepage.png?raw=true)
 
 [![npm version][npm-ver-img]][npm-ver-url] [![NPM downloads][npm-dl-img]][npm-dl-url]
 
@@ -43,14 +43,14 @@ If you're running on mainnet with the default datadir and port, the default conf
 #### Install via `npm`:
 
 ```bash
-npm install -g btc-rpc-explorer
-btc-rpc-explorer
+npm install -g bchc-rpc-explorer
+bchc-rpc-explorer
 ```
 
 #### Run from source:
 
-1. `git clone https://github.com/janoside/btc-rpc-explorer`
-2. `cd btc-rpc-explorer`
+1. `git clone https://github.com/Kimax89/bchc-rpc-explorer`
+2. `cd bchc-rpc-explorer`
 3. `npm install`
 4. `npm start`
 
@@ -66,17 +66,17 @@ Configuration options may be set via environment variables or CLI arguments.
 
 To configure with environment variables, you need to create one of the 2 following files and enter values in it:
 
-1. `~/.config/btc-rpc-explorer.env`
-2. `.env` in the working directory for btc-rpc-explorer
+1. `~/.config/bchc-rpc-explorer.env`
+2. `.env` in the working directory for bchc-rpc-explorer
 
 In either case, refer to [.env-sample](.env-sample) for a list of the options and formatting details.
 
 #### Configuration with CLI args
 
-For configuring with CLI arguments, run `btc-rpc-explorer --help` for the full list of options. An example execution is:
+For configuring with CLI arguments, run `bchc-rpc-explorer --help` for the full list of options. An example execution is:
 
 ```bash
-btc-rpc-explorer --port 8080 --bitcoind-port 18443 --bitcoind-cookie ~/.bitcoin/regtest/.cookie
+bchc-rpc-explorer --port 8080 --bitcoind-port 18443 --bitcoind-cookie ~/.bitcoin/regtest/.cookie
 ```
 
 #### Demo site settings
@@ -90,8 +90,8 @@ To match the features visible on the demo site at [https://explorer.btc21.org](h
 #### SSO authentication
 
 You can configure SSO authentication similar to what ThunderHub and RTL provide.
-To enable it, make sure `BTCEXP_BASIC_AUTH_PASSWORD` is **not** set and set `BTCEXP_SSO_TOKEN_FILE` to point to a file write-accessible by btc-rpc-explorer.
-Then to access btc-rpc-explorer, your SSO provider needs to read the token from this file and set it in URL parameter `token`.
+To enable it, make sure `BTCEXP_BASIC_AUTH_PASSWORD` is **not** set and set `BTCEXP_SSO_TOKEN_FILE` to point to a file write-accessible by bchc-rpc-explorer.
+Then to access bchc-rpc-explorer, your SSO provider needs to read the token from this file and set it in URL parameter `token`.
 For security reasons the token changes with each login, so the SSO provider needs to read it each time!
 
 After successfull access with the token a cookie is used for authentication, so you don't have to worry about it anymore.
@@ -100,8 +100,8 @@ This causes the users to be redirected to login page if not logged in.
 
 ## Run via Docker
 
-1. `docker build -t btc-rpc-explorer .`
-2. `docker run -it -p 3002:3002 -e BTCEXP_HOST=0.0.0.0 btc-rpc-explorer`
+1. `docker build -t bchc-rpc-explorer .`
+2. `docker run -it -p 3002:3002 -e BTCEXP_HOST=0.0.0.0 bchc-rpc-explorer`
 
 
 ## Reverse proxy with HTTPS
