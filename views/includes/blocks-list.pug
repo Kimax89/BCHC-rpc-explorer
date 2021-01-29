@@ -23,10 +23,7 @@ div.table-responsive
 
 				th.data-header.text-right
 					span.border-dotted(title="The average fee (sat/vB) for all block transactions.", data-toggle="tooltip") Avg Fee
-				th.data-header.text-right Σ Fees
 				
-				//th.data-header.text-right Size (kB)
-
 				if (blocks && blocks.length > 0 && blocks[0].weight)
 					th.data-header.text-right % Full
 						//span.border-dotted(title="Block weight, in kWu.", data-toggle="tooltip") Weight

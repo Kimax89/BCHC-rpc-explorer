@@ -17,23 +17,13 @@ div.row.index-summary
 					tr
 						th.px-2.px-lg-0.px-xl-2
 							i.fas.fa-tachometer-alt.mr-1.summary-icon
-							span.border-dotted(title="Estimates for global network hashrate for 1 day / 7 days.", data-toggle="tooltip") Hashrate
+							span.border-dotted(title="Estimates for global network hashrate for 1 day.", data-toggle="tooltip") Hashrate
 							small.ml-1 (d/w)
 						td.text-right.text-monospace
 							span.d-xxl-none #{hashrate1dayData0[0]}
 							span.d-none.d-xxl-inline #{hashrate1dayData1[0]}
 							small.text-muted  / 
 							small.border-dotted(title=`${hashrate1dayData0[1].abbreviation}H = ${hashrate1dayData0[1].name}-hash (x10^${hashrate1dayData0[1].exponent})`, data-toggle="tooltip") #{hashrate1dayData0[1].abbreviation}H/s
-
-				if (!["regtest", "signet"].includes(global.activeBlockchain))
-					tr
-						th.px-2.px-lg-0.px-xl-2
-							i.fas.fa-edit.mr-1.summary-icon
-							span.border-dotted(title="Estimate of the number of days the current global hashrate would require to produce all the hashes needed to re-write the entire blockchain.", data-toggle="tooltip") Chain Rewrite Days
-						td.text-right.text-monospace
-							- var globalHashCount = parseInt("0x" + getblockchaininfo.chainwork);
-							- var rewriteDays = globalHashCount / hashrate7d / 60 / 60 / 24;
-							span #{new Decimal(rewriteDays).toDecimalPlaces(1)}
 
 				tr
 					th.px-2.px-lg-0.px-xl-2
@@ -69,17 +59,6 @@ div.row.index-summary
 
 		table.table.table-borderless.table-sm.table-hover.mb-lg-0
 			tbody
-				tr
-					th.px-2.px-lg-0.px-xl-2
-						i.fas.fa-sign-out-alt.mr-1.summary-icon
-						//span Total Transactions
-						span Total Txs
-					td.text-right.text-monospace
-						if (txStats && txStats.totalTxCount)
-							span #{txStats.totalTxCount.toLocaleString()}
-						else
-							span ???
-
 				if (getblockchaininfo.size_on_disk)
 					- var sizeData = utils.formatLargeNumber(getblockchaininfo.size_on_disk, 2);
 
