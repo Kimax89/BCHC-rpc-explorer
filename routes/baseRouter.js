@@ -66,11 +66,11 @@ router.get("/", function(req, res, next) {
 	//promises.push(coreApi.getMempoolInfo());
 
 	// promiseResults[1]
-	promises.push(coreApi.getMiningInfo());
+	//promises.push(coreApi.getMiningInfo());
 
 	// promiseResults[2]
-	promises.push(coreApi.getNetworkHashrate(144));
-	promises.push(coreApi.getNetworkHashrate(1008));
+	//promises.push(coreApi.getNetworkHashrate(144));
+	//promises.push(coreApi.getNetworkHashrate(1008));
 
 
 	coreApi.getBlockchainInfo().then(function(getblockchaininfo) {
@@ -91,17 +91,17 @@ router.get("/", function(req, res, next) {
 			blockHeights.push(0);
 		}
 
-		promises.push(new Promise(function(resolve, reject) {
-			coreApi.getBlockHeaderByHeight(coinConfig.difficultyAdjustmentBlockCount * res.locals.difficultyPeriod).then(function(difficultyPeriodFirstBlockHeader) {
-				resolve(difficultyPeriodFirstBlockHeader);
-			});
-		}));
+		//promises.push(new Promise(function(resolve, reject) {
+		//	coreApi.getBlockHeaderByHeight(coinConfig.difficultyAdjustmentBlockCount * res.locals.difficultyPeriod).then(function(difficultyPeriodFirstBlockHeader) {
+		//		resolve(difficultyPeriodFirstBlockHeader);
+		//	});
+		//}));
 
 		if (getblockchaininfo.chain !== 'regtest') {
 			var targetBlocksPerDay = 24 * 60 * 60 / global.coinConfig.targetBlockTimeSeconds;
 
 			// promiseResults[7] (if not regtest)
-			promises.push(coreApi.getTxCountStats(targetBlocksPerDay / 4, -targetBlocksPerDay, "latest"));
+			//promises.push(coreApi.getTxCountStats(targetBlocksPerDay / 4, -targetBlocksPerDay, "latest"));
 
 			var chainTxStatsIntervals = [ targetBlocksPerDay, targetBlocksPerDay * 7, targetBlocksPerDay * 30, targetBlocksPerDay * 365 ]
 				.filter(numBlocks => numBlocks <= getblockchaininfo.blocks);
