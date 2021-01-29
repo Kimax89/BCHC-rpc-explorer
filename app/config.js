@@ -89,6 +89,7 @@ module.exports = {
 	demoSite: (process.env.BTCEXP_DEMO.toLowerCase() == "true"),
 	queryExchangeRates: (process.env.BTCEXP_NO_RATES.toLowerCase() != "true"),
 	noInmemoryRpcCache: (process.env.BTCEXP_NO_INMEMORY_RPC_CACHE.toLowerCase() == "true"),
+	showAdmin: (process.env.BTCEXP_UI_SHOW_ADMIN.toLowerCase() == "true"),
 	
 	rpcConcurrency: (process.env.BTCEXP_RPC_CONCURRENCY || 10),
 

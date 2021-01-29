@@ -93,7 +93,7 @@ html(lang="en")
 										i.fas.fa-search
 
 						ul.navbar-nav
-							if (process.env.BTCEXP_UI_SHOW_ADMIN == "true")
+							if (config.showAdmin)
 								li.nav-item.dropdown
 									a.nav-link.dropdown-toggle(href="javascript:void(0)", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") 
 										span  Admin Tools
