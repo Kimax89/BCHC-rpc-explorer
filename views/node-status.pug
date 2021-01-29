@@ -119,10 +119,8 @@ block content
 									- var upRateData = utils.formatLargeNumber(getnettotals.totalbytessent / uptimeSeconds, 2);
 
 									span Total Download: #{downData[0]} #{downData[1].abbreviation}B
-									span.text-muted  (avg #{downRateData[0]} #{downRateData[1].abbreviation}B/s)
 									br
 									span Total Upload: #{upData[0]} #{upData[1].abbreviation}B
-									span.text-muted  (avg #{upRateData[0]} #{upRateData[1].abbreviation}B/s)
 
 							if (getnetworkinfo.networks)
 								div.row
