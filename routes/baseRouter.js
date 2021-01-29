@@ -63,7 +63,7 @@ router.get("/", function(req, res, next) {
 	var promises = [];
 
 	// promiseResults[0]
-	promises.push(coreApi.getMempoolInfo());
+	//promises.push(coreApi.getMempoolInfo());
 
 	// promiseResults[1]
 	promises.push(coreApi.getMiningInfo());
