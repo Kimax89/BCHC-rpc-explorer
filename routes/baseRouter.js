@@ -116,7 +116,7 @@ router.get("/", function(req, res, next) {
 				//res.locals.mempoolInfo = promiseResults[0];
 				//res.locals.miningInfo = promiseResults[1];
 
-				var rawSmartFeeEstimates = promiseResults[2];
+				//var rawSmartFeeEstimates = promiseResults[2];
 
 				var smartFeeEstimates = {};
 
