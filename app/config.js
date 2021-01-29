@@ -187,8 +187,8 @@ module.exports = {
 		header:{
 			showToolsSubheader:(process.env.BTCEXP_UI_SHOW_TOOLS_SUBHEADER == "true"),
 		},
-		subHeaderToolsList:[0, 10, 9, 4, 11, 6, 7], // indexes in "siteTools" below that are shown in the site "sub menu" (visible on all pages except homepage)
-		prioritizedToolIdsList: [0, 10, 11, 9, 3, 4, 12, 2, 5, 1, 6, 7, 13, 8],
+		subHeaderToolsList:[0, 6, 3, 7, 5], // indexes in "siteTools" below that are shown in the site "sub menu" (visible on all pages except homepage)
+		prioritizedToolIdsList: [0, 7, 6, 3, 8, 2, 4, 1, 9, 5],
 	},
 
 	credentials: credentials,
