@@ -18,11 +18,9 @@ div.row.index-summary
 						th.px-2.px-lg-0.px-xl-2
 							i.fas.fa-tachometer-alt.mr-1.summary-icon
 							span.border-dotted(title="Estimates for global network hashrate for 1 day.", data-toggle="tooltip") Hashrate
-							small.ml-1 (d/w)
 						td.text-right.text-monospace
 							span.d-xxl-none #{hashrate1dayData0[0]}
 							span.d-none.d-xxl-inline #{hashrate1dayData1[0]}
-							small.text-muted  / 
 							small.border-dotted(title=`${hashrate1dayData0[1].abbreviation}H = ${hashrate1dayData0[1].name}-hash (x10^${hashrate1dayData0[1].exponent})`, data-toggle="tooltip") #{hashrate1dayData0[1].abbreviation}H/s
 
 				tr
