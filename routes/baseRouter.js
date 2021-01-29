@@ -113,41 +113,41 @@ router.get("/", function(req, res, next) {
 			res.locals.blocksUntilDifficultyAdjustment = ((res.locals.difficultyPeriod + 1) * coinConfig.difficultyAdjustmentBlockCount) - latestBlocks[0].height;
 
 			Promise.all(promises).then(function(promiseResults) {
-				//res.locals.mempoolInfo = promiseResults[0];
-				//res.locals.miningInfo = promiseResults[1];
+				res.locals.mempoolInfo = promiseResults[0];
+				res.locals.miningInfo = promiseResults[1];
 
-				var rawSmartFeeEstimates = promiseResults[2];
-
-				var smartFeeEstimates = {};
-
-				for (var i = 0; i < feeConfTargets.length; i++) {
-					var rawSmartFeeEstimate = rawSmartFeeEstimates[i];
-
-					if (rawSmartFeeEstimate.errors) {
-						smartFeeEstimates[feeConfTargets[i]] = "?";
-
-					} else {
-						smartFeeEstimates[feeConfTargets[i]] = parseInt(new Decimal(rawSmartFeeEstimate.feerate).times(coinConfig.baseCurrencyUnit.multiplier).dividedBy(1000));
-					}
-				}
-
-				res.locals.smartFeeEstimates = smartFeeEstimates;
+//				var rawSmartFeeEstimates = promiseResults[2];
+//
+//				var smartFeeEstimates = {};
+//
+//				for (var i = 0; i < feeConfTargets.length; i++) {
+//					var rawSmartFeeEstimate = rawSmartFeeEstimates[i];
+//
+//					if (rawSmartFeeEstimate.errors) {
+//						smartFeeEstimates[feeConfTargets[i]] = "?";
+//
+//					} else {
+//						smartFeeEstimates[feeConfTargets[i]] = parseInt(new Decimal(rawSmartFeeEstimate.feerate).times(coinConfig.baseCurrencyUnit.multiplier).dividedBy(1000));
+//					}
+//				}
+//
+//				res.locals.smartFeeEstimates = smartFeeEstimates;
 
 
 				res.locals.hashrate1d = promiseResults[3];
 				res.locals.hashrate7d = promiseResults[4];
 
 				
-//				var rawblockstats = promiseResults[5];
-//				if (rawblockstats && rawblockstats.length > 0 && rawblockstats[0] != null) {
-//					res.locals.blockstatsByHeight = {};
+				var rawblockstats = promiseResults[5];
+				if (rawblockstats && rawblockstats.length > 0 && rawblockstats[0] != null) {
+					res.locals.blockstatsByHeight = {};
 
-//					for (var i = 0; i < rawblockstats.length; i++) {
-//						var blockstats = rawblockstats[i];
+					for (var i = 0; i < rawblockstats.length; i++) {
+						var blockstats = rawblockstats[i];
 
-//						res.locals.blockstatsByHeight[blockstats.height] = blockstats;
-//					}
-//				}
+						res.locals.blockstatsByHeight[blockstats.height] = blockstats;
+					}
+				}
 
 				res.locals.difficultyPeriodFirstBlockHeader = promiseResults[6];
 				
