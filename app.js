@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-'use strict';
+"use strict";
 
-var os = require('os');
-var path = require('path');
-var dotenv = require("dotenv");
-var fs = require('fs');
+const os = require('os');
+const path = require('path');
+const dotenv = require("dotenv");
+const fs = require('fs');
 
-var configPaths = [ path.join(os.homedir(), '.config', 'bchc-rpc-explorer.env'), path.join(process.cwd(), '.env') ];
+const configPaths = [ path.join(os.homedir(), '.config', 'bchc-rpc-explorer.env'), path.join(process.cwd(), '.env') ];
 configPaths.filter(fs.existsSync).forEach(path => {
 	console.log('Loading env file:', path);
 	dotenv.config({ path });
@@ -17,49 +17,70 @@ global.cacheStats = {};
 
 // debug module is already loaded by the time we do dotenv.config
 // so refresh the status of DEBUG env var
-var debug = require("debug");
+const debug = require("debug");
 debug.enable(process.env.DEBUG || "btcexp:app,btcexp:error");
 
-var debugLog = debug("btcexp:app");
-var debugErrorLog = debug("btcexp:error");
-var debugPerfLog = debug("btcexp:actionPerformace");
+const debugLog = debug("btcexp:app");
+const debugErrorLog = debug("btcexp:error");
+const debugPerfLog = debug("btcexp:actionPerformace");
 
-var express = require('express');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require("express-session");
-var csurf = require("csurf");
-var config = require("./app/config.js");
-var simpleGit = require('simple-git');
-var utils = require("./app/utils.js");
-var moment = require("moment");
-var Decimal = require('decimal.js');
-var bitcoinCore = require("bitcoin-core");
-var pug = require("pug");
-var momentDurationFormat = require("moment-duration-format");
-var coreApi = require("./app/api/coreApi.js");
-var coins = require("./app/coins.js");
-var request = require("request");
-var qrcode = require("qrcode");
-var addressApi = require("./app/api/addressApi.js");
-var electrumAddressApi = require("./app/api/electrumAddressApi.js");
-var coreApi = require("./app/api/coreApi.js");
-var auth = require('./app/auth.js');
-var sso = require('./app/sso.js');
-var markdown = require("markdown-it")();
+const express = require('express');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require("express-session");
+const csurf = require("csurf");
+const config = require("./app/config.js");
+const simpleGit = require('simple-git');
+const utils = require("./app/utils.js");
+const moment = require("moment");
+const Decimal = require('decimal.js');
+const bitcoinCore = require("bitcoin-core");
+const pug = require("pug");
+const momentDurationFormat = require("moment-duration-format");
+const coreApi = require("./app/api/coreApi.js");
+const coins = require("./app/coins.js");
+const request = require("request");
+const qrcode = require("qrcode");
+const addressApi = require("./app/api/addressApi.js");
+const electrumAddressApi = require("./app/api/electrumAddressApi.js");
+const coreApi = require("./app/api/coreApi.js");
+const auth = require('./app/auth.js');
+const sso = require('./app/sso.js');
+const markdown = require("markdown-it")();
 
-var package_json = require('./package.json');
+const v8 = require("v8");
+
+const package_json = require('./package.json');
 global.appVersion = package_json.version;
 
-var crawlerBotUserAgentStrings = [ "Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "Baiduspider", "YandexBot", "Sogou", "Exabot", "facebot", "ia_archiver" ];
+const crawlerBotUserAgentStrings = [ "Googlebot", "Bingbot", "Slurp", "DuckDuckBot", "Baiduspider", "YandexBot", "Sogou", "Exabot", "facebot", "ia_archiver" ];
 
-var baseActionsRouter = require('./routes/baseRouter.js');
-var apiActionsRouter = require('./routes/apiRouter.js');
-var snippetActionsRouter = require('./routes/snippetRouter.js');
+const baseActionsRouter = require('./routes/baseRouter.js');
+const apiActionsRouter = require('./routes/apiRouter.js');
+const snippetActionsRouter = require('./routes/snippetRouter.js');
+const adminActionsRouter = require('./routes/adminRouter.js');
 
-var app = express();
+const app = express();
+
+app.use(require("express-status-monitor")({
+	path: config.baseUrl + 'admin/status',
+	spans: [
+		{
+			interval: 1,            // Every second
+			retention: 60           // Keep 60 datapoints in memory
+		},
+		{
+			interval: 30,            // Every 30 seconds
+			retention: 60
+		},
+		{
+			interval: 60,           // Every 60 seconds
+			retention: 24 * 60
+		}
+	]
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -134,7 +155,7 @@ function loadMiningPoolConfigs() {
 
 function getSourcecodeProjectMetadata() {
 	var options = {
-		url: "https://api.github.com/repos/Kimax89/bchc-rpc-explorer",
+		url: "https://api.github.com/repos/Clashic-Services/bchc-rpc-explorer",
 		headers: {
 			'User-Agent': 'request'
 		}
@@ -301,6 +322,22 @@ app.onStartup = function() {
 	global.config = config;
 	global.coinConfig = coins[config.coin];
 	global.coinConfigs = coins;
+
+	// dump "startup" heap after 5sec
+	(function () {
+		var callback = function() {
+			debugLog("Waited 5 sec after startup, now dumping 'startup' heap...");
+
+			const filename = `./heapDumpAtStartup-${Date.now()}.heapsnapshot`;
+			const heapdumpStream = v8.getHeapSnapshot();
+			const fileStream = fs.createWriteStream(filename);
+			heapdumpStream.pipe(fileStream);
+
+			debugLog("Heap dump at startup written to", filename);
+		};
+
+		setTimeout(callback, 5000);
+	})();
 
 	global.specialTransactions = {};
 	global.specialBlocks = {};

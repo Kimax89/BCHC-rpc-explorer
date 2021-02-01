@@ -1,6 +1,6 @@
 # BTC RPC Explorer
 
-![homepage](https://github.com/Kimax89/bchc-rpc-explorer/blob/master/public/img/screenshots/homepage.png?raw=true)
+![homepage](https://github.com/Clashic-Services/bchc-rpc-explorer/blob/master/public/img/screenshots/homepage.png?raw=true)
 
 [![npm version][npm-ver-img]][npm-ver-url] [![NPM downloads][npm-dl-img]][npm-dl-url]
 
@@ -49,7 +49,7 @@ bchc-rpc-explorer
 
 #### Run from source:
 
-1. `git clone https://github.com/Kimax89/bchc-rpc-explorer`
+1. `git clone https://github.com/Clashic-Services/bchc-rpc-explorer`
 2. `cd bchc-rpc-explorer`
 3. `npm install`
 4. `npm start`

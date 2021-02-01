@@ -1,7 +1,8 @@
-var Decimal = require("decimal.js");
-Decimal8 = Decimal.clone({ precision:8, rounding:8 });
+"use strict";
+const Decimal = require("decimal.js");
+const Decimal8 = Decimal.clone({ precision:8, rounding:8 });
 
-var currencyUnits = [
+const currencyUnits = [
 	{
 		type:"native",
 		name:"BCHC",
@@ -56,7 +57,7 @@ module.exports = {
 		"regtest":"Clashic Regtest Explorer",
 		"signet":"Clashic Signet Explorer",
 	},
-	siteDescriptionHtml:"<b>BCHC Explorer</b> is <a href='https://github.com/Kimax89/bchc-rpc-explorer). If you run your own [Bitcoin Full Node](https://bitcoin.org/en/full-node), **BCHC Explorer** can easily run alongside it, communicating via RPC calls. See the project [ReadMe](https://github.com/Kimax89/bchc-rpc-explorer) for a list of features and instructions for running.",
+	siteDescriptionHtml:"<b>BCHC Explorer</b> is <a href='https://github.com/Clashic-Services/bchc-rpc-explorer). If you run your own [Bitcoin Full Node](https://bitcoin.org/en/full-node), **BCHC Explorer** can easily run alongside it, communicating via RPC calls. See the project [ReadMe](https://github.com/Clashic-Services/bchc-rpc-explorer) for a list of features and instructions for running.",
 	nodeTitle:"Bitcoin Clashic Full Node",
 	nodeUrl:"https://bitcoin.org/en/full-node",
 	

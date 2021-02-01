@@ -1,3 +1,7 @@
+##### Unreleased
+
+* New: include running `node` version on `/admin` and in startup log
+
 ##### v2.2.0
 ###### 2021-01-22
 

@@ -15,12 +15,12 @@
     openssl dhparam -out dhparam.pem 4096
     
     # get nginx config
-    wget https://raw.githubusercontent.com/Kimax89/bchc-rpc-explorer/master/docs/explorer.btc21.org.conf
+    wget https://raw.githubusercontent.com/Clashic-Services/bchc-rpc-explorer/master/docs/explorer.btc21.org.conf
     mv explorer.btc21.org.conf /etc/nginx/sites-available/
 
     # get source, npm install
     cd /home/bitcoin
-    git clone https://github.com/Kimax89/bchc-rpc-explorer.git
+    git clone https://github.com/Clashic-Services/bchc-rpc-explorer.git
     cd /home/bitcoin/bchc-rpc-explorer
     npm install
     

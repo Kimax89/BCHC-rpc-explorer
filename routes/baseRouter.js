@@ -1,28 +1,27 @@
-var debug = require("debug");
-var debugLog = debug("btcexp:router");
+"use strict";
+const debug = require("debug");
+const debugLog = debug("btcexp:router");
 
-var express = require('express');
-var csurf = require('csurf');
-var router = express.Router();
-var util = require('util');
-var moment = require('moment');
-var bitcoinCore = require("bitcoin-core");
-var qrcode = require('qrcode');
-var bitcoinjs = require('bitcoinjs-lib');
-var sha256 = require("crypto-js/sha256");
-var hexEnc = require("crypto-js/enc-hex");
-var Decimal = require("decimal.js");
-var semver = require("semver");
-var markdown = require("markdown-it")();
+const express = require('express');
+const csurf = require('csurf');
+const router = express.Router();
+const util = require('util');
+const moment = require('moment');
+const bitcoinCore = require("bitcoin-core");
+const qrcode = require('qrcode');
+const bitcoinjs = require('bitcoinjs-lib');
+const sha256 = require("crypto-js/sha256");
+const hexEnc = require("crypto-js/enc-hex");
+const Decimal = require("decimal.js");
+const semver = require("semver");
+const markdown = require("markdown-it")();
 
-var utils = require('./../app/utils.js');
-var coins = require("./../app/coins.js");
-var config = require("./../app/config.js");
-var coreApi = require("./../app/api/coreApi.js");
-var addressApi = require("./../app/api/addressApi.js");
-var rpcApi = require("./../app/api/rpcApi.js");
-
-const v8 = require('v8');
+const utils = require('./../app/utils.js');
+const coins = require("./../app/coins.js");
+const config = require("./../app/config.js");
+const coreApi = require("./../app/api/coreApi.js");
+const addressApi = require("./../app/api/addressApi.js");
+const rpcApi = require("./../app/api/rpcApi.js");
 
 const forceCsrf = csurf({ ignoreMethods: [] });
 
@@ -1438,30 +1437,6 @@ router.get("/about", function(req, res, next) {
 
 router.get("/tools", function(req, res, next) {
 	res.render("tools");
-
-	next();
-});
-
-router.get("/admin", function(req, res, next) {
-	res.locals.appStartTime = global.appStartTime;
-	res.locals.memstats = v8.getHeapStatistics();
-	res.locals.rpcStats = global.rpcStats;
-	res.locals.electrumStats = global.electrumStats;
-	res.locals.cacheStats = global.cacheStats;
-	res.locals.errorStats = global.errorStats;
-
-	res.locals.appConfig = {
-		privacyMode: config.privacyMode,
-		slowDeviceMode: config.slowDeviceMode,
-		demoSite: config.demoSite,
-		rpcConcurrency: config.rpcConcurrency,
-		addressApi: config.addressApi,
-		ipStackComApiAccessKey: !!config.credentials.ipStackComApiAccessKey,
-		redisCache: !!config.redisUrl,
-		noInmemoryRpcCache: config.noInmemoryRpcCache
-	};
-
-	res.render("admin");
 
 	next();
 });
