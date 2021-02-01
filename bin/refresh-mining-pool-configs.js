@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 "use strict";
-var os = require('os');
-var path = require('path');
-var dotenv = require("dotenv");
-var fs = require('fs');
-var request = require("request");
+const os = require('os');
+const path = require('path');
+const dotenv = require("dotenv");
+const fs = require('fs');
+const request = require("request");
 
-var utils = require("../app/utils.js");
-var coins = require("../app/coins.js");
+const utils = require("../app/utils.js");
+const coins = require("../app/coins.js");
 
 async function refreshMiningPoolsForCoin(coinName) {
 	return new Promise(function(resolve, reject) {
