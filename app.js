@@ -45,7 +45,6 @@ const request = require("request");
 const qrcode = require("qrcode");
 const addressApi = require("./app/api/addressApi.js");
 const electrumAddressApi = require("./app/api/electrumAddressApi.js");
-const coreApi = require("./app/api/coreApi.js");
 const auth = require('./app/auth.js');
 const sso = require('./app/sso.js');
 const markdown = require("markdown-it")();
