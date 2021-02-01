@@ -291,10 +291,6 @@ function onRpcConnectionVerified(getnetworkinfo, getblockchaininfo) {
 	refreshUtxoSetSummary();
 	setInterval(refreshUtxoSetSummary, 30 * 60 * 1000);
 
-
-	// 1d / 7d volume
-	refreshNetworkVolumes();
-	setInterval(refreshNetworkVolumes, 30 * 60 * 1000);
 }
 
 function refreshUtxoSetSummary() {
