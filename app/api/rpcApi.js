@@ -10,7 +10,7 @@ const utils = require("../utils.js");
 const config = require("../config.js");
 const coins = require("../coins.js");
 
-const activeQueueTasks = 0;
+let activeQueueTasks = 0;
 
 const rpcQueue = async.queue(function(task, callback) {
 	activeQueueTasks++;
